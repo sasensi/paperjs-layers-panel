@@ -22,7 +22,6 @@
             position : absolute;
             top      : 0;
             left     : 0;
-            z-index  : -1;
         }
     </style>
 </head>
@@ -36,9 +35,12 @@
 
     // draw something to test display
     var circle1 = new paper.Path.Circle({
-        center   : paper.view.center,
-        radius   : 50,
-        fillColor: 'orange'
+        center       : paper.view.center,
+        radius       : 50,
+        fillColor    : 'orange',
+        selectedColor: 'red',
+        selected     : true,
+        onMouseDown  : function () {this.selected = !this.selected;}
     });
     var layer   = new paper.Layer();
     layer.activate();

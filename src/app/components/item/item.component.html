@@ -1,5 +1,11 @@
 <ng-container *ngIf="item">
-    <h2>Item {{item.id}}</h2>
+    <article>
+        <h2>{{item.name || item.className}}</h2>
+        <span>{{item.visible ? 'visible' : 'hidden'}}</span>
+        <span>{{item.locked ? 'locked' : 'unlocked'}}</span>
+        <span>{{item.selectedColor}}</span>
+        <span>{{item.selected ? 'selected' : 'unselected'}}</span>
+    </article>
     <div *ngIf="item.children && item.children.length > 0">
         <app-item *ngFor="let item of item.children" [item]="item"></app-item>
     </div>
