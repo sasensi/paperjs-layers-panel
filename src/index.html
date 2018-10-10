@@ -40,7 +40,11 @@
         fillColor    : 'orange',
         selectedColor: 'red',
         selected     : true,
-        onMouseDown  : function () {this.selected = !this.selected;}
+        onMouseDown  : function ()
+        {
+            this.selected = !this.selected;
+            updatePanel();
+        }
     });
     var layer   = new paper.Layer();
     layer.activate();
@@ -49,6 +53,11 @@
         radius   : 50,
         fillColor: 'blue'
     });
+
+    function updatePanel()
+    {
+        panel.ngElementStrategy.componentRef.instance.update();
+    }
 </script>
 </body>
 </html>

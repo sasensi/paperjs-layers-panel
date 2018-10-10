@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, Input } from '@angular/core';
 
 @Component({
     templateUrl: './panel.component.html',
@@ -18,7 +18,8 @@ export class PanelComponent
 
     _scope: paper.PaperScope;
 
-    constructor ( private elementRef: ElementRef )
+    constructor ( private elementRef: ElementRef,
+                  private changeDetectorRef: ChangeDetectorRef)
     {
         // on load, check if scope has already been set
         var element  = this.elementRef.nativeElement;
@@ -30,5 +31,10 @@ export class PanelComponent
             delete element[ property ];
             element[ property ] = value;
         }
+    }
+
+    update ()
+    {
+        this.changeDetectorRef.detectChanges();
     }
 }

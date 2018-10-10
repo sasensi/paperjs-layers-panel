@@ -2,3 +2,4 @@
 <main *ngIf="_scope">
     <app-item *ngFor="let layer of _scope.project.layers" [item]="layer"></app-item>
 </main>
+<button (click)="update()">update</button>

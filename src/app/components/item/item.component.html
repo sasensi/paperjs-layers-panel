@@ -7,6 +7,6 @@
         <span>{{item.selected ? 'selected' : 'unselected'}}</span>
     </article>
     <div *ngIf="item.children && item.children.length > 0">
-        <app-item *ngFor="let item of item.children" [item]="item"></app-item>
+        <app-item *ngFor="let child of item.children" [item]="child"></app-item>
     </div>
 </ng-container>
