@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, ElementRef, Input } from '@angular/core';
+import {faTimes} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     templateUrl: './panel.component.html',
@@ -17,6 +18,8 @@ export class PanelComponent
     }
 
     _scope: paper.PaperScope;
+
+    iconClose = faTimes;
 
     constructor ( private elementRef: ElementRef,
                   private changeDetectorRef: ChangeDetectorRef )

@@ -9,7 +9,9 @@
     <div>
         <header #titleBar>
             <h1>Paper.js layers panel</h1>
-            <button (click)="close()">close</button>
+            <button (click)="close()">
+                <fa-icon [icon]="iconClose"></fa-icon>
+            </button>
         </header>
         <section *ngIf="_scope">
             <app-item *ngFor="let layer of _scope.project.layers" [item]="layer"></app-item>

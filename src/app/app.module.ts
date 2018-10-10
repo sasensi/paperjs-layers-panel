@@ -1,6 +1,7 @@
 import { Injector, NgModule } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AngularDraggableModule } from 'angular2-draggable';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { ItemComponent } from './components/item/item.component';
@@ -12,6 +13,7 @@ import { PanelComponent } from './components/panel/panel.component';
         BrowserModule,
         ColorPickerModule,
         AngularDraggableModule,
+        FontAwesomeModule,
     ],
     entryComponents: [ PanelComponent ],
 })

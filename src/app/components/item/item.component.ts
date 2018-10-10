@@ -1,4 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
+import {
+    faCaretDown,
+    faCaretRight,
+    faEye,
+    faEyeSlash,
+    faLock,
+    faTrash,
+    faUnlockAlt,
+    faVectorSquare,
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector   : 'app-item',
@@ -11,6 +21,15 @@ export class ItemComponent implements OnInit
 
     childrenVisible = false;
 
+    iconVisible            = faEye;
+    iconNotVisible         = faEyeSlash;
+    iconLocked             = faLock;
+    iconNotLocked          = faUnlockAlt;
+    iconChildrenVisible    = faCaretDown;
+    iconChildrenNotVisible = faCaretRight;
+    iconSelected           = faVectorSquare;
+    iconDelete             = faTrash;
+
     constructor ()
     {
     }
@@ -19,12 +38,12 @@ export class ItemComponent implements OnInit
     {
     }
 
-    get selectedColor(): string
+    get selectedColor (): string
     {
         return this.item.selectedColor && (this.item.selectedColor as paper.Color).toCSS(true) || '#009dec';
     }
 
-    get hasChildren(): boolean
+    get hasChildren (): boolean
     {
         return this.item.children && this.item.children.length > 0;
     }

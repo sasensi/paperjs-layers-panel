@@ -1,8 +1,18 @@
 <ng-container *ngIf="item">
     <article>
-        <button (click)="item.visible = !item.visible">{{item.visible ? 'visible' : 'hidden'}}</button>
-        <button (click)="item.locked = !item.locked">{{item.locked ? 'locked' : 'unlocked'}}</button>
-        <button *ngIf="hasChildren" (click)="childrenVisible = !childrenVisible">{{childrenVisible ? 'expanded' : 'collapased'}}</button>
+        <!-- visible -->
+        <button (click)="item.visible = !item.visible">
+            <fa-icon [icon]="item.visible ? iconVisible : iconNotVisible"></fa-icon>
+        </button>
+        <!-- locked -->
+        <button (click)="item.locked = !item.locked">
+            <fa-icon [icon]="item.locked ? iconLocked : iconNotLocked"></fa-icon>
+        </button>
+        <!-- children visible -->
+        <button *ngIf="hasChildren" (click)="childrenVisible = !childrenVisible">
+            <fa-icon [icon]="childrenVisible ? iconChildrenVisible : iconChildrenNotVisible"></fa-icon>
+        </button>
+        <!-- name -->
         <h2>{{item.name || item.className}}</h2>
         <span
             [colorPicker]="selectedColor"
@@ -12,9 +22,16 @@
             [cpWidth]="'130px'"
             (colorPickerChange)="item.selectedColor=$event"
         ></span>
-        <button (click)="item.selected = !item.selected">{{item.selected ? 'selected' : 'unselected'}}</button>
-        <button (click)="item.remove()">delete</button>
+        <!-- selected -->
+        <button (click)="item.selected = !item.selected">
+            <fa-icon [icon]="iconSelected" [style.opacity]="item.selected ? 1 : 0.25"></fa-icon>
+        </button>
+        <!-- delete -->
+        <button (click)="item.remove()">
+            <fa-icon [icon]="iconDelete"></fa-icon>
+        </button>
     </article>
+    <!-- children -->
     <div *ngIf="hasChildren && childrenVisible">
         <app-item *ngFor="let child of item.children" [item]="child"></app-item>
     </div>
