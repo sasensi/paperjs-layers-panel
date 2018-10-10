@@ -1622,6 +1622,11 @@ declare module paper {
         onMouseLeave: (event: MouseEvent) => void | boolean;
 
         /**
+         * Specifies whether the item is locked.
+         */
+        locked: boolean;
+
+        /**
          * Sets those properties of the passed object literal on this item to the values defined in the object literal, if the item has property of the given name (or a setter defined for it).
          */
         set(props: any): Item;
@@ -4652,7 +4657,7 @@ declare module paper {
          * Returns the color as a CSS string.
          * @param hex - whether to return the color in hexadecial representation or as a CSS RGB / RGBA string.
          */
-        toCSS(hex: boolean): string;
+        toCSS(hex?: boolean): string;
 
         /**
          * Transform the gradient color by the specified matrix.
@@ -4708,6 +4713,14 @@ declare module paper {
          */
         divide(color: Color): Color;
 
+        /**
+         * Returns the color as a CSS string.
+         *
+         * @param {Boolean} hex whether to return the color in hexadecimal
+         * representation or as a CSS RGB / RGBA string.
+         * @return {String} a CSS string representation of the color
+         */
+        toCSS(hex:boolean): string;
     }
     /**
      * The Gradient object.
