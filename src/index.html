@@ -6,8 +6,29 @@
     <base href="/">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.11.5/paper-core.js"></script>
+    <style>
+        html,
+        body {
+            margin   : 0;
+            overflow : hidden;
+            height   : 100%;
+        }
+
+        /* Scale canvas with resize attribute to full size */
+        canvas[resize] {
+            width  : 100%;
+            height : 100%;
+        }
+    </style>
 </head>
 <body>
-<paperjs-layer-panel></paperjs-layer-panel>
+<paperjs-layer-panel id="panel"></paperjs-layer-panel>
+<canvas id="canvas" resize></canvas>
+<script>
+    var scope   = paper.setup(document.getElementById('canvas'));
+    var panel   = document.getElementById('panel');
+    panel.scope = scope;
+</script>
 </body>
 </html>

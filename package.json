@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --output-hashing=none",
+    "build": "ng build --output-hashing=none --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e --port 4201",
@@ -22,10 +22,11 @@
     "@angular/platform-browser": "^6.1.0",
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
+    "@types/paper": "^0.11.1",
     "core-js": "^2.5.4",
+    "document-register-element": "^1.7.2",
     "rxjs": "~6.2.0",
-    "zone.js": "~0.8.26",
-    "document-register-element": "^1.7.2"
+    "zone.js": "~0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.8.0",
