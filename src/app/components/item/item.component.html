@@ -1,10 +1,10 @@
 <ng-container *ngIf="item">
     <article>
         <h2>{{item.name || item.className}}</h2>
-        <span>{{item.visible ? 'visible' : 'hidden'}}</span>
-        <span>{{item.locked ? 'locked' : 'unlocked'}}</span>
+        <button (click)="item.visible = !item.visible">{{item.visible ? 'visible' : 'hidden'}}</button>
+        <button (click)="item.locked = !item.locked">{{item.locked ? 'locked' : 'unlocked'}}</button>
         <span>{{item.selectedColor}}</span>
-        <span>{{item.selected ? 'selected' : 'unselected'}}</span>
+        <button (click)="item.selected = !item.selected">{{item.selected ? 'selected' : 'unselected'}}</button>
     </article>
     <div *ngIf="item.children && item.children.length > 0">
         <app-item *ngFor="let child of item.children" [item]="child"></app-item>

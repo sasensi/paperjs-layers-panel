@@ -12,9 +12,9 @@ Paper.js plugin displaying project hierarchy as an interactive panel.
     - [x] selected color
     - [x] selected state
 - [x] update display
-- [ ] toggle item selected state
-- [ ] toggle item locked state
-- [ ] toggle item visibility
+- [x] toggle item selected state
+- [x] toggle item locked state
+- [x] toggle item visibility
 - [ ] delete item
 - [ ] collapse / expand groups
 - [ ] collapse / expand panel
