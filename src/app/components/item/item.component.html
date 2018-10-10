@@ -1,9 +1,9 @@
 <ng-container *ngIf="item">
     <article>
-        <button *ngIf="hasChildren" (click)="childrenVisible = !childrenVisible">{{childrenVisible ? 'expanded' : 'collapased'}}</button>
-        <h2>{{item.name || item.className}}</h2>
         <button (click)="item.visible = !item.visible">{{item.visible ? 'visible' : 'hidden'}}</button>
         <button (click)="item.locked = !item.locked">{{item.locked ? 'locked' : 'unlocked'}}</button>
+        <button *ngIf="hasChildren" (click)="childrenVisible = !childrenVisible">{{childrenVisible ? 'expanded' : 'collapased'}}</button>
+        <h2>{{item.name || item.className}}</h2>
         <span
             [colorPicker]="selectedColor"
             [style.background]="selectedColor"

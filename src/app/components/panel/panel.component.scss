@@ -1,9 +1,14 @@
 :host {
-    position : fixed;
-    top      : 15px;
-    left     : 15px;
+    position    : fixed;
+    top         : 15px;
+    left        : 15px;
+    z-index     : 1;
+    user-select : none;
+}
+
+main {
+    overflow : hidden;
     border   : 1px solid;
-    z-index  : 1;
 }
 
 h1 {
@@ -12,8 +17,10 @@ h1 {
     background-color : black;
     color            : white;
     padding          : 5px 10px;
+    white-space      : nowrap;
+    cursor           : move;
 }
 
-main {
+section {
     padding : 5px 10px;
 }

@@ -18,8 +18,6 @@ export class PanelComponent
 
     _scope: paper.PaperScope;
 
-    collapsed = false;
-
     constructor ( private elementRef: ElementRef,
                   private changeDetectorRef: ChangeDetectorRef)
     {
