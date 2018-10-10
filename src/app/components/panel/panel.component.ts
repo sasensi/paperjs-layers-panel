@@ -19,7 +19,7 @@ export class PanelComponent
     _scope: paper.PaperScope;
 
     constructor ( private elementRef: ElementRef,
-                  private changeDetectorRef: ChangeDetectorRef)
+                  private changeDetectorRef: ChangeDetectorRef )
     {
         // on load, check if scope has already been set
         var element  = this.elementRef.nativeElement;
@@ -36,5 +36,12 @@ export class PanelComponent
     update ()
     {
         this.changeDetectorRef.detectChanges();
+    }
+
+    close ()
+    {
+        this.elementRef.nativeElement
+            .parentElement
+            .removeChild(this.elementRef.nativeElement);
     }
 }

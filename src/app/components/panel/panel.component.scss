@@ -11,14 +11,21 @@ main {
     border   : 1px solid;
 }
 
-h1 {
+header {
     font-weight      : bold;
-    text-align       : center;
     background-color : black;
     color            : white;
     padding          : 5px 10px;
     white-space      : nowrap;
     cursor           : move;
+    display          : flex;
+    align-items      : center;
+    justify-content  : space-between;
+
+    h1 {
+        overflow : hidden;
+        margin-right : 10px;
+    }
 }
 
 section {
