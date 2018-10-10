@@ -38,11 +38,6 @@ export class ItemComponent implements OnInit
     {
     }
 
-    get selectedColor (): string
-    {
-        return this.item.selectedColor && (this.item.selectedColor as paper.Color).toCSS(true) || '#009dec';
-    }
-
     get hasChildren (): boolean
     {
         return this.item.children && this.item.children.length > 0;

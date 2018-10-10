@@ -28,7 +28,6 @@
     "angular2-draggable": "^2.1.4",
     "core-js": "^2.5.4",
     "document-register-element": "^1.7.2",
-    "ngx-color-picker": "^6.7.0",
     "rxjs": "~6.2.0",
     "zone.js": "~0.8.26"
   },

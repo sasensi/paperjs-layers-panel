@@ -8,24 +8,16 @@
         <button (click)="item.locked = !item.locked">
             <fa-icon [icon]="item.locked ? iconLocked : iconNotLocked"></fa-icon>
         </button>
+        <!-- selected -->
+        <button (click)="item.selected = !item.selected">
+            <fa-icon [icon]="iconSelected" [style.opacity]="item.selected ? 1 : 0.25"></fa-icon>
+        </button>
         <!-- children visible -->
         <button *ngIf="hasChildren" (click)="childrenVisible = !childrenVisible">
             <fa-icon [icon]="childrenVisible ? iconChildrenVisible : iconChildrenNotVisible"></fa-icon>
         </button>
         <!-- name -->
         <h2>{{item.name || item.className}}</h2>
-        <span
-            [colorPicker]="selectedColor"
-            [style.background]="selectedColor"
-            [cpOutputFormat]="'hex'"
-            [cpPosition]="'bottom'"
-            [cpWidth]="'130px'"
-            (colorPickerChange)="item.selectedColor=$event"
-        ></span>
-        <!-- selected -->
-        <button (click)="item.selected = !item.selected">
-            <fa-icon [icon]="iconSelected" [style.opacity]="item.selected ? 1 : 0.25"></fa-icon>
-        </button>
         <!-- delete -->
         <button (click)="item.remove()">
             <fa-icon [icon]="iconDelete"></fa-icon>
