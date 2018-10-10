@@ -5,6 +5,7 @@
         <button (click)="item.locked = !item.locked">{{item.locked ? 'locked' : 'unlocked'}}</button>
         <span>{{item.selectedColor}}</span>
         <button (click)="item.selected = !item.selected">{{item.selected ? 'selected' : 'unselected'}}</button>
+        <button (click)="item.remove()">delete</button>
     </article>
     <div *ngIf="item.children && item.children.length > 0">
         <app-item *ngFor="let child of item.children" [item]="child"></app-item>
