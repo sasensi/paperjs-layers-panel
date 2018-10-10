@@ -1,5 +1,8 @@
-<h1>Paper.js layers panel</h1>
-<main *ngIf="_scope">
-    <app-item *ngFor="let layer of _scope.project.layers" [item]="layer"></app-item>
-</main>
-<button (click)="update()">update</button>
+<ng-container *ngIf="!collapsed">
+    <h1>Paper.js layers panel</h1>
+    <main *ngIf="_scope">
+        <app-item *ngFor="let layer of _scope.project.layers" [item]="layer"></app-item>
+    </main>
+    <button (click)="update()">update</button>
+</ng-container>
+<button (click)="collapsed = !collapsed">{{collapsed ? 'expand' : 'collapse'}}</button>
