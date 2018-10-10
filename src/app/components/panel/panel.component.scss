@@ -12,22 +12,19 @@ main {
 }
 
 header {
-    font-weight      : bold;
-    background-color : black;
-    color            : white;
-    padding          : 5px 10px;
-    white-space      : nowrap;
-    cursor           : move;
-    display          : flex;
-    align-items      : center;
-    justify-content  : space-between;
+    color           : black;
+    white-space     : nowrap;
+    cursor          : move;
+    display         : flex;
+    align-items     : center;
+    justify-content : space-between;
+    border-bottom   : 2px solid;
 
     h1 {
         overflow : hidden;
-        margin-right : 10px;
     }
-}
 
-section {
-    padding : 5px 10px;
+    button {
+        flex-shrink : 0;
+    }
 }

@@ -1,30 +1,34 @@
 <ng-container *ngIf="item">
-    <article>
+    <div class="item">
         <!-- visible -->
         <button (click)="item.visible = !item.visible">
-            <fa-icon [icon]="item.visible ? iconVisible : iconNotVisible"></fa-icon>
+            <fa-icon [icon]="item.visible ? iconVisible : iconNotVisible" [style.opacity]="item.visible ? 1 : 0.25"></fa-icon>
         </button>
         <!-- locked -->
         <button (click)="item.locked = !item.locked">
-            <fa-icon [icon]="item.locked ? iconLocked : iconNotLocked"></fa-icon>
+            <fa-icon [icon]="item.locked ? iconLocked : iconNotLocked" [style.opacity]="item.locked ? 1 : 0.25"></fa-icon>
         </button>
         <!-- selected -->
         <button (click)="item.selected = !item.selected">
             <fa-icon [icon]="iconSelected" [style.opacity]="item.selected ? 1 : 0.25"></fa-icon>
         </button>
+        <!-- offset -->
+        <span class="placeholder" [style.marginLeft]="depth*15+'px'"></span>
         <!-- children visible -->
-        <button *ngIf="hasChildren" (click)="childrenVisible = !childrenVisible">
-            <fa-icon [icon]="childrenVisible ? iconChildrenVisible : iconChildrenNotVisible"></fa-icon>
-        </button>
+        <div class="children-toggle">
+            <button *ngIf="hasChildren" (click)="childrenVisible = !childrenVisible">
+                <fa-icon [icon]="childrenVisible ? iconChildrenVisible : iconChildrenNotVisible"></fa-icon>
+            </button>
+        </div>
         <!-- name -->
         <h2>{{item.name || item.className}}</h2>
         <!-- delete -->
         <button (click)="item.remove()">
             <fa-icon [icon]="iconDelete"></fa-icon>
         </button>
-    </article>
+    </div>
     <!-- children -->
     <div *ngIf="hasChildren && childrenVisible">
-        <app-item *ngFor="let child of item.children" [item]="child"></app-item>
+        <app-item *ngFor="let child of item.children" [item]="child" [depth]="depth+1"></app-item>
     </div>
 </ng-container>

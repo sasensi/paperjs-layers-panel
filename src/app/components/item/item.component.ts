@@ -18,6 +18,7 @@ import {
 export class ItemComponent implements OnInit
 {
     @Input() item: paper.Item;
+    @Input() depth = 0;
 
     childrenVisible = false;
 

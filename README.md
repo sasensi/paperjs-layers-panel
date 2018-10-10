@@ -22,7 +22,7 @@ Paper.js plugin displaying project hierarchy as an interactive panel.
 - [x] resize panel
 - [x] open / close panel
 ### Project
-- [ ] stylize
+- [x] stylize
 - [ ] comment code
 - [ ] simplify API
 - [ ] online demo

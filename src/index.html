@@ -46,6 +46,7 @@
             updatePanel();
         }
     });
+    circle1.clone().translate(0,25);
     var layer   = new paper.Layer();
     layer.activate();
     var circle2 = new paper.Path.Circle({
@@ -53,6 +54,8 @@
         radius   : 50,
         fillColor: 'blue'
     });
+
+    new paper.Group(circle2);
 
     function updatePanel()
     {

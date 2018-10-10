@@ -1,46 +1,32 @@
-article {
-    display     : flex;
-    align-items : center;
+.item {
+    display       : flex;
+    align-items   : center;
+    border-bottom : 1px solid;
 
-    > *:not(:last-child) {
-        margin-right : 5px;
+    > * {
+        flex-shrink : 0;
     }
 }
 
-div {
-    margin-left : 15px;
+h2 {
+    flex          : 1;
+    padding-right : 5px;
+    white-space   : nowrap;
+    overflow      : hidden;
 }
 
-// color picker
-span {
-    min-width  : 20px;
-    min-height : 20px;
-    border     : 1px solid;
-}
+.children-toggle {
+    width : 15px;
 
-:host /deep/ .color-picker {
-    .left {
-        display : none;
-    }
-
-    .right {
-        padding : 0;
-
-        > div:first-child {
-            display : none;
+    button {
+        width         : 15px;
+        padding-right : 5px;
+        &:hover {
+            background : none;
         }
     }
+}
 
-    .hue-alpha.box {margin-bottom : 0;padding : 0;}
-
-    .hsla-text,
-    .rgba-text,
-    .hex-text,
-    .type-policy {
-        display : none !important;
-    }
-
-    .hue {
-        margin-bottom : 0 !important;
-    }
+.placeholder {
+    width : 5px;
 }
