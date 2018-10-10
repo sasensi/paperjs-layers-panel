@@ -1,13 +1,10 @@
-/// <reference path="../../node_modules/@types/paper/index.d.ts" />
-
 import { Component, ElementRef, Input } from '@angular/core';
 
-
 @Component({
-    templateUrl: './app.component.html',
-    styleUrls  : [ './app.component.scss' ],
+    templateUrl: './panel.component.html',
+    styleUrls  : [ './panel.component.scss' ],
 })
-export class AppComponent
+export class PanelComponent
 {
     @Input() set scope ( scope )
     {

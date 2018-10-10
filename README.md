@@ -4,7 +4,7 @@ Paper.js plugin displaying project hierarchy as an interactive panel.
 ## Roadmap
 ### Use cases 
 - [x] bind scope
-- [ ] see all project items
+- [x] see all project items
 - [ ] see item
     - [ ] name or type
     - [ ] visibility

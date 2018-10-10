@@ -1,0 +1,6 @@
+<ng-container *ngIf="item">
+    <h2>Item {{item.id}}</h2>
+    <div *ngIf="item.children && item.children.length > 0">
+        <app-item *ngFor="let item of item.children" [item]="item"></app-item>
+    </div>
+</ng-container>

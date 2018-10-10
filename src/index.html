@@ -16,9 +16,13 @@
         }
 
         /* Scale canvas with resize attribute to full size */
-        canvas[resize] {
-            width  : 100%;
-            height : 100%;
+        canvas {
+            width    : 100%;
+            height   : 100%;
+            position : absolute;
+            top      : 0;
+            left     : 0;
+            z-index  : -1;
         }
     </style>
 </head>
@@ -26,9 +30,23 @@
 <paperjs-layer-panel id="panel"></paperjs-layer-panel>
 <canvas id="canvas" resize></canvas>
 <script>
-    var scope   = paper.setup(document.getElementById('canvas'));
+    paper.setup(document.getElementById('canvas'));
     var panel   = document.getElementById('panel');
-    panel.scope = scope;
+    panel.scope = paper;
+
+    // draw something to test display
+    var circle1 = new paper.Path.Circle({
+        center   : paper.view.center,
+        radius   : 50,
+        fillColor: 'orange'
+    });
+    var layer   = new paper.Layer();
+    layer.activate();
+    var circle2 = new paper.Path.Circle({
+        center   : paper.view.center.add(150, 0),
+        radius   : 50,
+        fillColor: 'blue'
+    });
 </script>
 </body>
 </html>

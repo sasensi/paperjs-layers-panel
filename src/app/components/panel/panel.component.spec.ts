@@ -1,5 +1,5 @@
 import { async, TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import { PanelComponent } from './app.component';
 
 describe('AppComponent', () =>
 {
@@ -7,14 +7,14 @@ describe('AppComponent', () =>
     {
         TestBed.configureTestingModule({
             declarations: [
-                AppComponent,
+                PanelComponent,
             ],
         }).compileComponents();
     }));
 
     it('should create the app', () =>
     {
-        const fixture = TestBed.createComponent(AppComponent);
+        const fixture = TestBed.createComponent(PanelComponent);
         const app     = fixture.debugElement.componentInstance;
         expect(app).toBeTruthy();
     });
