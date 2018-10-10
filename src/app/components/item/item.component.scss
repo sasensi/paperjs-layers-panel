@@ -10,3 +10,36 @@ article {
 div {
     margin-left : 15px;
 }
+
+// color picker
+span {
+    width  : 20px;
+    height : 20px;
+    border : 1px solid;
+}
+
+:host /deep/ .color-picker {
+    .left {
+        display : none;
+    }
+
+    .right {
+        padding : 0;
+
+        > div:first-child {
+            display : none;
+        }
+    }
+
+    .hue-alpha.box {margin-bottom : 0;padding : 0;}
+
+    .hsla-text,
+    .rgba-text,
+    .hex-text {
+        display : none !important;
+    }
+
+    .hue {
+        margin-bottom : 0 !important;
+    }
+}

@@ -17,4 +17,8 @@ export class ItemComponent implements OnInit
     {
     }
 
+    get selectedColor()
+    {
+        return this.item.selectedColor && (this.item.selectedColor as paper.Color).toCSS(true) || '#009dec';
+    }
 }

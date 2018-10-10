@@ -3,7 +3,14 @@
         <h2>{{item.name || item.className}}</h2>
         <button (click)="item.visible = !item.visible">{{item.visible ? 'visible' : 'hidden'}}</button>
         <button (click)="item.locked = !item.locked">{{item.locked ? 'locked' : 'unlocked'}}</button>
-        <span>{{item.selectedColor}}</span>
+        <span
+            [colorPicker]="selectedColor"
+            [style.background]="selectedColor"
+            [cpOutputFormat]="'hex'"
+            [cpPosition]="'bottom'"
+            [cpWidth]="'130px'"
+            (colorPickerChange)="item.selectedColor=$event"
+        ></span>
         <button (click)="item.selected = !item.selected">{{item.selected ? 'selected' : 'unselected'}}</button>
         <button (click)="item.remove()">delete</button>
     </article>
