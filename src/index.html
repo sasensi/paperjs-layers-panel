@@ -30,6 +30,9 @@
 </head>
 <body>
 <canvas id="canvas" resize></canvas>
+<!-- angular files will be inserted here -->
+</body>
+<!-- place script outside of body to make sure it is loaded after angular-->
 <script>
 
     // load paper
@@ -37,37 +40,18 @@
 
     // draw something to test display
     var circle1 = new paper.Path.Circle({
-        center       : paper.view.center,
-        radius       : 50,
-        fillColor    : 'orange',
-        selectedColor: 'red',
-        selected     : true,
-        onMouseDown  : function ()
-        {
-            this.selected = !this.selected;
-        }
+        center     : paper.view.center,
+        radius     : 50,
+        fillColor  : 'orange',
+        selected   : true,
+        onMouseDown: function () {this.selected = !this.selected;}
     });
-    circle1.clone().translate(0, 25);
-    var layer = new paper.Layer();
-    layer.activate();
-    var circle2 = new paper.Path.Circle({
-        center   : paper.view.center.add(150, 0),
-        radius   : 50,
-        fillColor: 'blue'
-    });
-    new paper.Group(circle2);
 
-    // Load panel.
     // Here we load it without using helper function because angular files
     // will be inserted at the end of body tag and helper function has not
     // been set at this point.
     // document.body.appendChild(document.createElement('paperjs-layer-panel'));
-
-</script>
-<!-- angular files will be inserted here -->
-</body>
-<script>
-    document.body.appendChild(document.createElement('paperjs-layer-panel'));
+    paper.createLayersPanel();
 
 </script>
 </html>

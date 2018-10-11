@@ -1,13 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
-    Component,
-    ElementRef,
-    EventEmitter,
-    Input,
-    Output,
-    ViewChild,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { faSyncAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 /**
@@ -21,9 +12,8 @@ import { faSyncAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
  * - close panel
  */
 @Component({
-    templateUrl    : './panel.component.html',
-    styleUrls      : [ './panel.component.scss' ],
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './panel.component.html',
+    styleUrls  : [ './panel.component.scss' ],
 })
 export class PanelComponent
 {
@@ -37,6 +27,8 @@ export class PanelComponent
             return;
         }
         this._scope = scope;
+
+        this.addChangeListener();
     }
 
     _scope: paper.PaperScope;
@@ -47,6 +39,11 @@ export class PanelComponent
 
     iconClose  = faTimes;
     iconUpdate = faSyncAlt;
+
+    // create an unique identifier for each instance
+    // this will be used in automatic scope change detection
+    private static instanceCounter = 0;
+    private instanceId             = ++PanelComponent.instanceCounter;
 
     constructor ( private elementRef: ElementRef,
                   private changeDetectorRef: ChangeDetectorRef )
@@ -72,6 +69,11 @@ export class PanelComponent
         }
     }
 
+
+    //
+    // API
+    //
+
     /**
      * Update panel display.
      */
@@ -86,6 +88,10 @@ export class PanelComponent
      */
     close ()
     {
+        // remove change listener
+        this.removeChangeListener();
+
+        // remove element
         this.elementRef.nativeElement
             .parentElement
             .removeChild(this.elementRef.nativeElement);
@@ -107,5 +113,68 @@ export class PanelComponent
         // remove inline styles added by resizable directive
         el.style.removeProperty('width');
         el.style.removeProperty('height');
+    }
+
+
+    //
+    // INTERNAL
+    //
+
+    private addChangeListener ()
+    {
+        var scope = this._scope as any;
+
+        // can't patch a scope with no project
+        if (!scope.project)
+        {
+            return;
+        }
+
+        // if scope is not patched yet
+        if (!scope._layersPanelListeners)
+        {
+            // create stack
+            scope._layersPanelListeners = {};
+
+            // patch changed method
+            var originalMethod = scope.project._changed;
+
+            // when called
+            scope.project._changed = function ( flags, item )
+            {
+                // call original method
+                originalMethod.apply(this, arguments);
+                // then call panels callbacks if change is related to panel content
+                // todo: check flags
+                if (true)
+                {
+                    for (let key in scope._layersPanelListeners)
+                    {
+                        scope._layersPanelListeners[ key ](item);
+                    }
+                }
+            };
+        }
+
+        // if not already listening
+        if (!(this.instanceId in scope._layersPanelListeners))
+        {
+            // listen for changes
+            scope._layersPanelListeners[ this.instanceId ] = ( item ) =>
+            {
+                // todo: update only targeted item
+                this.update();
+            };
+        }
+    }
+
+    private removeChangeListener ()
+    {
+        var scope = this._scope as any;
+
+        if (scope._layersPanelListeners && this.instanceId in scope._layersPanelListeners)
+        {
+            delete scope._layersPanelListeners[ this.instanceId ];
+        }
     }
 }

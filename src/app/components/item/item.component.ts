@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {
     faCaretDown,
     faCaretRight,
@@ -20,10 +20,9 @@ import {
  * - remove item
  */
 @Component({
-    selector       : 'paperjs-layer-panel-item',
-    templateUrl    : './item.component.html',
-    styleUrls      : [ './item.component.scss' ],
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    selector   : 'paperjs-layer-panel-item',
+    templateUrl: './item.component.html',
+    styleUrls  : [ './item.component.scss' ],
 })
 export class ItemComponent
 {
@@ -43,18 +42,8 @@ export class ItemComponent
     iconSelected           = faVectorSquare;
     iconDelete             = faTrash;
 
-    constructor ( private changeDetectorRef: ChangeDetectorRef )
-    {
-    }
-
     get hasChildren (): boolean
     {
         return this.item.children && this.item.children.length > 0;
-    }
-
-    update ()
-    {
-        // manual change detection is needed because of specific custom element context
-        this.changeDetectorRef.detectChanges();
     }
 }

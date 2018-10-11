@@ -1,29 +1,29 @@
 <ng-container *ngIf="item">
     <div class="item">
         <!-- visible -->
-        <button (click)="item.visible = !item.visible; update()">
+        <button (click)="item.visible = !item.visible">
             <fa-icon [icon]="item.visible ? iconVisible : iconNotVisible" [class.faded]="!item.visible"></fa-icon>
         </button>
         <!-- locked -->
-        <button (click)="item.locked = !item.locked; update()">
+        <button (click)="item.locked = !item.locked">
             <fa-icon [icon]="item.locked ? iconLocked : iconNotLocked" [class.faded]="!item.locked"></fa-icon>
         </button>
         <!-- selected -->
-        <button (click)="item.selected = !item.selected; update()">
+        <button (click)="item.selected = !item.selected">
             <fa-icon [icon]="iconSelected" [class.faded]="!item.selected"></fa-icon>
         </button>
         <!-- create indentation effect by adding a right margin proportional to item depth in hierarchy -->
         <span [style.marginRight]="depth*15+'px'"></span>
         <!-- use a wrapper around children toggle button to make sure that siblings items will be aligned wether they have children or not -->
         <div class="children-toggle">
-            <button *ngIf="hasChildren" (click)="childrenVisible = !childrenVisible; update()">
+            <button *ngIf="hasChildren" (click)="childrenVisible = !childrenVisible">
                 <fa-icon [icon]="childrenVisible ? iconChildrenVisible : iconChildrenNotVisible"></fa-icon>
             </button>
         </div>
         <!-- name -->
         <h2>{{item.name || item.className}}</h2>
         <!-- delete -->
-        <button (click)="item.remove(); item = null; update()">
+        <button (click)="item.remove()">
             <fa-icon [icon]="iconDelete"></fa-icon>
         </button>
     </div>
