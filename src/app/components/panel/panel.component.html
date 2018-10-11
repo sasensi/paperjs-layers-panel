@@ -16,7 +16,7 @@
             <fa-icon [icon]="iconClose"></fa-icon>
         </button>
     </header>
-    <section *ngIf="_scope">
+    <section *ngIf="_scope && _scope.project">
         <!-- loop layers -->
         <paperjs-layer-panel-item *ngFor="let layer of _scope.project.layers" [item]="layer"></paperjs-layer-panel-item>
     </section>

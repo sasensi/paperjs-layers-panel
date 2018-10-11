@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { faSyncAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 /**
@@ -28,7 +28,10 @@ export class PanelComponent
         }
         this._scope = scope;
     }
+
     _scope: paper.PaperScope;
+
+    @Output() ready = new EventEmitter<PanelComponent>();
 
     @ViewChild('wrapper') wrapperElement: ElementRef;
 
@@ -38,6 +41,10 @@ export class PanelComponent
     constructor ( private elementRef: ElementRef,
                   private changeDetectorRef: ChangeDetectorRef )
     {
+        // use an empty timeout as a trick to handle imediately listening
+        // to ready event after element creation case
+        setTimeout(() => this.ready.emit(this), 0);
+
         // on load, check if scope has already been set
         var element  = this.elementRef.nativeElement;
         var property = 'scope';
@@ -47,6 +54,11 @@ export class PanelComponent
             let value = element[ property ];
             delete element[ property ];
             element[ property ] = value;
+        }
+        // by default, set global paper as scope
+        else
+        {
+            this.scope = paper;
         }
     }
 

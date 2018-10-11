@@ -34,12 +34,10 @@
     </style>
 </head>
 <body>
-<paperjs-layer-panel id="panel"></paperjs-layer-panel>
 <canvas id="canvas" resize></canvas>
 <script>
+
     paper.setup(document.getElementById('canvas'));
-    var panel   = document.getElementById('panel');
-    panel.scope = paper;
 
     // draw something to test display
     var circle1 = new paper.Path.Circle({
@@ -51,7 +49,6 @@
         onMouseDown  : function ()
         {
             this.selected = !this.selected;
-            updatePanel();
         }
     });
     circle1.clone().translate(0, 25);
@@ -62,13 +59,11 @@
         radius   : 50,
         fillColor: 'blue'
     });
-
     new paper.Group(circle2);
 
-    function updatePanel()
-    {
-        panel.ngElementStrategy.componentRef.instance.update();
-    }
+    // load panel
+    document.body.appendChild(document.createElement('paperjs-layer-panel'));
+
 </script>
 </body>
 </html>
