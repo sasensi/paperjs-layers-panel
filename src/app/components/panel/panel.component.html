@@ -1,4 +1,5 @@
 <main
+    #wrapper
     ngResizable
     [rzMinHeight]="26"
     [rzMinWidth]="26"
@@ -7,7 +8,7 @@
     [handle]="titleBar"
 >
     <div>
-        <header #titleBar>
+        <header #titleBar (dblclick)="resetSize()">
             <button (click)="update()">
                 <fa-icon [icon]="iconUpdate"></fa-icon>
             </button>

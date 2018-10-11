@@ -23,6 +23,14 @@
             top      : 0;
             left     : 0;
         }
+
+        paperjs-layer-panel main {
+            position : fixed;
+            top      : 15px;
+            z-index  : 1;
+            left     : 15px;
+            width    : 300px;
+        }
     </style>
 </head>
 <body>
@@ -46,8 +54,8 @@
             updatePanel();
         }
     });
-    circle1.clone().translate(0,25);
-    var layer   = new paper.Layer();
+    circle1.clone().translate(0, 25);
+    var layer = new paper.Layer();
     layer.activate();
     var circle2 = new paper.Path.Circle({
         center   : paper.view.center.add(150, 0),

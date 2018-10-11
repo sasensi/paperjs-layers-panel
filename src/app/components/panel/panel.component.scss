@@ -1,14 +1,7 @@
-:host {
-    position    : fixed;
-    top         : 15px;
-    left        : 15px;
-    z-index     : 1;
-    user-select : none;
-}
-
 main {
-    overflow : hidden;
-    border   : 1px solid;
+    overflow    : hidden;
+    border      : 1px solid;
+    user-select : none;
 }
 
 header {

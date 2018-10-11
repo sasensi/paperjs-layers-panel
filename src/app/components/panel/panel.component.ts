@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { faSyncAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -16,6 +16,8 @@ export class PanelComponent
         }
         this._scope = scope;
     }
+
+    @ViewChild('wrapper') wrapperElement: ElementRef;
 
     _scope: paper.PaperScope;
 
@@ -47,5 +49,19 @@ export class PanelComponent
         this.elementRef.nativeElement
             .parentElement
             .removeChild(this.elementRef.nativeElement);
+    }
+
+    resetSize ()
+    {
+        if (!this.wrapperElement)
+        {
+            return;
+        }
+
+        var el: HTMLElement = this.wrapperElement.nativeElement;
+
+        // remove inline styles added by resizable directive
+        el.style.removeProperty('width');
+        el.style.removeProperty('height');
     }
 }
