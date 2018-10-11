@@ -1,4 +1,13 @@
-import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    ElementRef,
+    EventEmitter,
+    Input,
+    Output,
+    ViewChild,
+} from '@angular/core';
 import { faSyncAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 /**
@@ -12,8 +21,9 @@ import { faSyncAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
  * - close panel
  */
 @Component({
-    templateUrl: './panel.component.html',
-    styleUrls  : [ './panel.component.scss' ],
+    templateUrl    : './panel.component.html',
+    styleUrls      : [ './panel.component.scss' ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PanelComponent
 {

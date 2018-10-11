@@ -30,3 +30,60 @@ header {
         flex-shrink : 0;
     }
 }
+
+//
+// GLOBAL
+//
+:host /deep/ {
+    // reset
+    h1, h2 {
+        margin    : 0;
+        padding   : 0;
+        font      : inherit;
+        font-size : 100%;
+    }
+
+    button {
+        width      : 25px;
+        height     : 25px;
+        padding    : 0;
+        border     : none;
+        cursor     : pointer;
+        outline    : none;
+        background : none;
+
+        &:hover {
+            background-color : #EAEAEA;
+        }
+    }
+
+    // resizable styles
+    // copied from node_modules/angular2-draggable/css/resizable.css
+    .ng-resizable {
+        position : relative;
+    }
+
+    .ng-resizable-handle {
+        position         : absolute;
+        font-size        : 0.1px;
+        display          : block;
+        -ms-touch-action : none;
+        touch-action     : none;
+    }
+
+    .ng-resizable-handle.ng-resizable-se {
+        cursor : se-resize;
+        width  : 12px;
+        height : 12px;
+        right  : 1px;
+        bottom : 1px;
+    }
+
+    .ng-resizable-diagonal {
+        box-sizing    : border-box;
+        width         : 0;
+        height        : 0;
+        border-bottom : 12px solid #AAA;
+        border-left   : 12px solid transparent;
+    }
+}

@@ -2,9 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>PaperjsLayersPanel</title>
+    <title>Paperjs Layers Panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- load paper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.11.5/paper-core.js"></script>
+    <!-- load panel -->
+    <script src="../build/paperjs-layers-panel.js"></script>
     <style>
+        /* stylize canvas */
         html,
         body {
             margin   : 0;
@@ -20,6 +25,7 @@
             left     : 0;
         }
 
+        /* stylize panel */
         paperjs-layer-panel main {
             position : fixed;
             top      : 15px;
@@ -32,24 +38,23 @@
 <canvas id="canvas" resize></canvas>
 <script>
 
-    // load paper
+    // bind paper to canvas
     paper.setup(document.getElementById('canvas'));
 
-    // draw something to test display
+    // draw something to test
     var circle1 = new paper.Path.Circle({
-        center       : paper.view.center,
-        radius       : 50,
-        fillColor    : 'orange',
-        selectedColor: 'red',
-        selected     : true,
-        onMouseDown  : function ()
-        {
-            this.selected = !this.selected;
-        }
+        center     : paper.view.center,
+        radius     : 50,
+        fillColor  : 'orange',
+        selected   : true,
+        onMouseDown: function () {this.selected = !this.selected;}
     });
+
     circle1.clone().translate(0, 25);
+
     var layer = new paper.Layer();
     layer.activate();
+
     var circle2 = new paper.Path.Circle({
         center   : paper.view.center.add(150, 0),
         radius   : 50,
@@ -57,17 +62,10 @@
     });
     new paper.Group(circle2);
 
-    // Load panel.
-    // Here we load it without using helper function because angular files
-    // will be inserted at the end of body tag and helper function has not
-    // been set at this point.
-    // document.body.appendChild(document.createElement('paperjs-layer-panel'));
+
+    // load panel
+    paper.createLayersPanel();
 
 </script>
-<!-- angular files will be inserted here -->
 </body>
-<script>
-    document.body.appendChild(document.createElement('paperjs-layer-panel'));
-
-</script>
 </html>
