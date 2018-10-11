@@ -9,26 +9,23 @@
 }
 
 h2 {
-    flex          : 1;
     padding-right : 5px;
+    // make item name expand when panel is upsized and disappear when it is downsized
+    flex          : 1;
     white-space   : nowrap;
     overflow      : hidden;
 }
 
+// make children toggle button a little less wide than other buttons to reduce indentation effect
 .children-toggle {
-    width : 15px;
+    width : 20px;
 
     button {
-        width         : 15px;
-        padding-right : 5px;
+        width : 20px;
         &:hover {
             background : none;
         }
     }
-}
-
-.placeholder {
-    width : 5px;
 }
 
 .faded {

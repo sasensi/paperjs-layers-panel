@@ -10,14 +10,25 @@ import {
     faVectorSquare,
 } from '@fortawesome/free-solid-svg-icons';
 
+/**
+ * Displays an item and its potential children.
+ * Allow to:
+ * - toggle visibillity
+ * - toggle locked state
+ * - toggle selected state
+ * - expand / collape children
+ * - remove item
+ */
 @Component({
-    selector   : 'app-item',
+    selector   : 'paperjs-layer-panel-item',
     templateUrl: './item.component.html',
     styleUrls  : [ './item.component.scss' ],
 })
-export class ItemComponent implements OnInit
+export class ItemComponent
 {
     @Input() item: paper.Item;
+
+    // used to controll horizontal offset according to item depth in hierarchy
     @Input() depth = 0;
 
     childrenVisible = false;
@@ -30,14 +41,6 @@ export class ItemComponent implements OnInit
     iconChildrenNotVisible = faCaretRight;
     iconSelected           = faVectorSquare;
     iconDelete             = faTrash;
-
-    constructor ()
-    {
-    }
-
-    ngOnInit ()
-    {
-    }
 
     get hasChildren (): boolean
     {

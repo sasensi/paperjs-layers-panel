@@ -12,9 +12,9 @@
         <button (click)="item.selected = !item.selected">
             <fa-icon [icon]="iconSelected" [class.faded]="!item.selected"></fa-icon>
         </button>
-        <!-- offset -->
-        <span class="placeholder" [style.marginLeft]="depth*15+'px'"></span>
-        <!-- children visible -->
+        <!-- create indentation effect by adding a right margin proportional to item depth in hierarchy -->
+        <span [style.marginRight]="depth*15+'px'"></span>
+        <!-- use a wrapper around children toggle button to make sure that siblings items will be aligned wether they have children or not -->
         <div class="children-toggle">
             <button *ngIf="hasChildren" (click)="childrenVisible = !childrenVisible">
                 <fa-icon [icon]="childrenVisible ? iconChildrenVisible : iconChildrenNotVisible"></fa-icon>
@@ -29,6 +29,6 @@
     </div>
     <!-- children -->
     <div *ngIf="hasChildren && childrenVisible">
-        <app-item *ngFor="let child of item.children" [item]="child" [depth]="depth+1"></app-item>
+        <paperjs-layer-panel-item *ngFor="let child of item.children" [item]="child" [depth]="depth+1"></paperjs-layer-panel-item>
     </div>
 </ng-container>

@@ -19,6 +19,7 @@ export class AppModule
 {
     constructor ( private injector: Injector )
     {
+        // register custom element
         customElements.define('paperjs-layer-panel', createCustomElement(PanelComponent, { injector }));
     }
 
