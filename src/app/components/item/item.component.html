@@ -2,15 +2,15 @@
     <div class="item">
         <!-- visible -->
         <button (click)="item.visible = !item.visible">
-            <fa-icon [icon]="item.visible ? iconVisible : iconNotVisible" [style.opacity]="item.visible ? 1 : 0.25"></fa-icon>
+            <fa-icon [icon]="item.visible ? iconVisible : iconNotVisible" [class.faded]="!item.visible"></fa-icon>
         </button>
         <!-- locked -->
         <button (click)="item.locked = !item.locked">
-            <fa-icon [icon]="item.locked ? iconLocked : iconNotLocked" [style.opacity]="item.locked ? 1 : 0.25"></fa-icon>
+            <fa-icon [icon]="item.locked ? iconLocked : iconNotLocked" [class.faded]="!item.locked"></fa-icon>
         </button>
         <!-- selected -->
         <button (click)="item.selected = !item.selected">
-            <fa-icon [icon]="iconSelected" [style.opacity]="item.selected ? 1 : 0.25"></fa-icon>
+            <fa-icon [icon]="iconSelected" [class.faded]="!item.selected"></fa-icon>
         </button>
         <!-- offset -->
         <span class="placeholder" [style.marginLeft]="depth*15+'px'"></span>
