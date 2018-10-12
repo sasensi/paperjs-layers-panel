@@ -21,7 +21,7 @@ export class PanelComponent
     @Input() set scope ( scope )
     {
         // only check instance type if global paper variable is available
-        if (paper && !(scope instanceof paper.PaperScope))
+        if (!(scope instanceof paper.PaperScope))
         {
             console.warn('Scope should be a "paper.PaperScope" instance.');
             return;

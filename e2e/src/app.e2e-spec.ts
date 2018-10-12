@@ -15,6 +15,6 @@ describe('workspace-project App', () =>
     it('should display title', () =>
     {
         page.navigateTo();
-        expect(page.getTitle()).toEqual('Paper.js layers panel');
+        expect(page.getTitle()).toEqual('Layers panel');
     });
 });

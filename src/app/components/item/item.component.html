@@ -1,16 +1,16 @@
-<ng-container *ngIf="item">
+<ng-container *ngIf="_item">
     <div class="item">
         <!-- visible -->
-        <button (click)="item.visible = !item.visible">
-            <fa-icon [icon]="item.visible ? iconVisible : iconNotVisible" [class.faded]="!item.visible"></fa-icon>
+        <button (click)="_item.visible = !_item.visible">
+            <fa-icon [icon]="_item.visible ? iconVisible : iconNotVisible" [class.faded]="!_item.visible"></fa-icon>
         </button>
         <!-- locked -->
-        <button (click)="item.locked = !item.locked">
-            <fa-icon [icon]="item.locked ? iconLocked : iconNotLocked" [class.faded]="!item.locked"></fa-icon>
+        <button (click)="_item.locked = !_item.locked">
+            <fa-icon [icon]="_item.locked ? iconLocked : iconNotLocked" [class.faded]="!_item.locked"></fa-icon>
         </button>
         <!-- selected -->
-        <button (click)="item.selected = !item.selected">
-            <fa-icon [icon]="iconSelected" [class.faded]="!item.selected"></fa-icon>
+        <button (click)="_item.selected = !_item.selected">
+            <fa-icon [icon]="iconSelected" [class.faded]="!_item.selected"></fa-icon>
         </button>
         <!-- create indentation effect by adding a right margin proportional to item depth in hierarchy -->
         <span [style.marginRight]="depth*15+'px'"></span>
@@ -21,14 +21,14 @@
             </button>
         </div>
         <!-- name -->
-        <h2>{{item.name || item.className}}</h2>
+        <h2>{{_item.name || _item.className}}</h2>
         <!-- delete -->
-        <button (click)="item.remove()">
+        <button (click)="_item.remove()">
             <fa-icon [icon]="iconDelete"></fa-icon>
         </button>
     </div>
     <!-- children -->
     <div *ngIf="hasChildren && childrenVisible">
-        <paperjs-layer-panel-item *ngFor="let child of item.children" [item]="child" [depth]="depth+1"></paperjs-layer-panel-item>
+        <paperjs-layer-panel-item *ngFor="let child of _item.children" [item]="child" [depth]="depth+1"></paperjs-layer-panel-item>
     </div>
 </ng-container>
