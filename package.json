@@ -5,10 +5,11 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --output-hashing=none --prod && gulp package && gulp clean",
-    "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e --port 4201",
-    "e2e:debug": "node --inspect-brk node_modules/protractor/bin/protractor e2e/protractor.conf.js"
+    "test:ci":"ng test --watch false && ng e2e",
+    "test:unit": "ng test",
+    "test:e2e": "ng e2e --port 4201",
+    "test:e2e:debug": "node --inspect-brk node_modules/protractor/bin/protractor e2e/protractor.conf.js"
   },
   "private": true,
   "dependencies": {
