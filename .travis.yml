@@ -16,8 +16,20 @@ before_script:
 - sudo apt-get install -y libappindicator1 fonts-liberation
 - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 - sudo dpkg -i google-chrome*.deb
-- npm set progress=false
+- rm google-chrome*.deb
 
 script:
 - npm run test:ci
 - npm run build
+- export LAST_COMMIT_ID=$(git log --format="%H" -n 1)
+- git clone --depth=1 --branch=master https://github.com/sasensi/paperjs-layers-panel.git master
+- rm -rf .git
+- mv master/.git .git
+- rm -rf master/
+- git add -A
+- git config user.name "Travis bot"
+- git config user.email "bot@travis.org"
+- git commit -m "Automatic update from develop after commit $LAST_COMMIT_ID"
+- git remote remove origin
+- git remote add origin https://sasensi:${GITHUB_TOKEN}@github.com/sasensi/paperjs-layers-panel.git
+- git push origin master
