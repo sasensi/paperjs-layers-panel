@@ -2,12 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Paperjs Layers Panel</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Paperjs Layers Panel Demo</title>
     <!-- load paper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.11.5/paper-core.js"></script>
     <!-- load panel -->
-    <script src="../build/paperjs-layers-panel.js"></script>
+    <script src="./build/paperjs-layers-panel.js"></script>
     <style>
         /* stylize canvas */
         html,
@@ -47,10 +46,9 @@
         radius     : 50,
         fillColor  : 'orange',
         selected   : true,
+        name       : 'circle 1',
         onMouseDown: function () {this.selected = !this.selected;}
     });
-
-    circle1.clone().translate(0, 25);
 
     var layer = new paper.Layer();
     layer.activate();
