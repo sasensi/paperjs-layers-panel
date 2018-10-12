@@ -52,7 +52,7 @@ paper.createLayersPanel(function (instance) {
     // called when the element is fully loaded
 });
 ```
-Finally, it can be called passing an `object` as argument with following properties:
+Finally, it can be called passing an `object` as argument with following optional properties:
 ```
 {
     scope   : PaperScope,
@@ -102,4 +102,4 @@ After retrieving instance from the callback, methods can be used to control the 
 - [x] online demo
 - [x] complete readme
 - [ ] contribute note
-- [ ] add it to [sketch](http://sketch.paperjs.org)
+- [ ] add to [sketch](http://sketch.paperjs.org)
