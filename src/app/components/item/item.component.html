@@ -16,7 +16,7 @@
         <span [style.marginRight]="depth*15+'px'"></span>
         <!-- use a wrapper around children toggle button to make sure that siblings items will be aligned wether they have children or not -->
         <div class="children-toggle">
-            <button *ngIf="hasChildren" (click)="childrenVisible = !childrenVisible">
+            <button *ngIf="hasChildren" (click)="childrenVisible = !childrenVisible; update()">
                 <fa-icon [icon]="childrenVisible ? iconChildrenVisible : iconChildrenNotVisible"></fa-icon>
             </button>
         </div>

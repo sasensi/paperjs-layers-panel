@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import {
     faCaretDown,
     faCaretRight,
@@ -42,8 +42,17 @@ export class ItemComponent
     iconSelected           = faVectorSquare;
     iconDelete             = faTrash;
 
+    constructor (private changeDetectorRef: ChangeDetectorRef)
+    {
+    }
+
     get hasChildren (): boolean
     {
         return this.item.children && this.item.children.length > 0;
+    }
+
+    update()
+    {
+        this.changeDetectorRef.detectChanges();
     }
 }
