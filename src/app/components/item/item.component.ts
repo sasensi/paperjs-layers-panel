@@ -26,7 +26,17 @@ import {
 })
 export class ItemComponent
 {
-    @Input() item: paper.Item;
+    @Input() set item(item)
+    {
+        // only check instance type if global paper variable is available
+        if (!(item instanceof paper.Item))
+        {
+            console.warn('Item should be a "paper.Item" instance.');
+            return;
+        }
+        this._item = item;
+    }
+    _item: paper.Item;
 
     // used to controll horizontal offset according to item depth in hierarchy
     @Input() depth = 0;
@@ -48,7 +58,7 @@ export class ItemComponent
 
     get hasChildren (): boolean
     {
-        return this.item.children && this.item.children.length > 0;
+        return this._item.children && this._item.children.length > 0;
     }
 
     update()

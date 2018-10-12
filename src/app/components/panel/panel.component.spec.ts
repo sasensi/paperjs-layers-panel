@@ -1,5 +1,12 @@
 import { async, TestBed } from '@angular/core/testing';
-import { PanelComponent } from './app.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AngularDraggableModule } from 'angular2-draggable';
+import { ItemComponent } from '../item/item.component';
+import { PanelComponent } from './panel.component';
+import * as paper from 'paper';
+
+// expose paper
+(window as any).paper = paper;
 
 describe('AppComponent', () =>
 {
@@ -8,6 +15,11 @@ describe('AppComponent', () =>
         TestBed.configureTestingModule({
             declarations: [
                 PanelComponent,
+                ItemComponent,
+            ],
+            imports     : [
+                FontAwesomeModule,
+                AngularDraggableModule,
             ],
         }).compileComponents();
     }));

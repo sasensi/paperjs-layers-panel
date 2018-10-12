@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+- "8"
+sudo: true
+dist: trusty
+
+branches:
+    only:
+    - develop
+
+before_script:
+- export CHROME_BIN=/usr/bin/google-chrome
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- sudo apt-get update
+- sudo apt-get install -y libappindicator1 fonts-liberation
+- wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+- sudo dpkg -i google-chrome*.deb
+- npm set progress=false
+
+script:
+- npm run test:ci
+- npm run build
