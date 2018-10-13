@@ -17,21 +17,15 @@ import { faSyncAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
 })
 export class PanelComponent
 {
-    // scope is bound with a setter to be enable to check type
-    @Input() set scope ( scope )
+    @Input() set project ( project )
     {
-        // only check instance type if global paper variable is available
-        if (!(scope instanceof paper.PaperScope))
-        {
-            console.warn('Scope should be a "paper.PaperScope" instance.');
-            return;
-        }
-        this._scope = scope;
+        this._project = project;
 
         this.addChangeListener();
+        this.update();
     }
 
-    _scope: paper.PaperScope;
+    _project: paper.Project;
 
     @Output() ready = new EventEmitter<PanelComponent>();
 
@@ -51,22 +45,6 @@ export class PanelComponent
         // use an empty timeout as a trick to handle imediately listening
         // to ready event after element creation case
         setTimeout(() => this.ready.emit(this), 0);
-
-        // on load, check if scope has already been set
-        var element  = this.elementRef.nativeElement;
-        var property = 'scope';
-        if (element.hasOwnProperty(property))
-        {
-            // if it does, trigger setter by resetting value
-            let value = element[ property ];
-            delete element[ property ];
-            element[ property ] = value;
-        }
-        // by default, set global paper as scope
-        else
-        {
-            this.scope = paper;
-        }
     }
 
 
@@ -122,25 +100,19 @@ export class PanelComponent
 
     private addChangeListener ()
     {
-        var scope = this._scope as any;
-
-        // can't patch a scope with no project
-        if (!scope.project)
-        {
-            return;
-        }
+        var project = this._project as any;
 
         // if scope is not patched yet
-        if (!scope._layersPanelListeners)
+        if (!project._layersPanelListeners)
         {
             // create stack
-            scope._layersPanelListeners = {};
+            project._layersPanelListeners = {};
 
             // patch changed method
-            var originalMethod = scope.project._changed;
+            var originalMethod = project._changed;
 
             // when called
-            scope.project._changed = function ( flags, item )
+            project._changed = function ( flags, item )
             {
                 // call original method
                 originalMethod.apply(this, arguments);
@@ -148,19 +120,19 @@ export class PanelComponent
                 // todo: check flags
                 if (true)
                 {
-                    for (let key in scope._layersPanelListeners)
+                    for (let key in project._layersPanelListeners)
                     {
-                        scope._layersPanelListeners[ key ](item);
+                        project._layersPanelListeners[ key ](item);
                     }
                 }
             };
         }
 
         // if not already listening
-        if (!(this.instanceId in scope._layersPanelListeners))
+        if (!(this.instanceId in project._layersPanelListeners))
         {
             // listen for changes
-            scope._layersPanelListeners[ this.instanceId ] = ( item ) =>
+            project._layersPanelListeners[ this.instanceId ] = ( item ) =>
             {
                 // todo: update only targeted item
                 this.update();
@@ -170,11 +142,11 @@ export class PanelComponent
 
     private removeChangeListener ()
     {
-        var scope = this._scope as any;
+        var project = this._project as any;
 
-        if (scope._layersPanelListeners && this.instanceId in scope._layersPanelListeners)
+        if (project._layersPanelListeners && this.instanceId in project._layersPanelListeners)
         {
-            delete scope._layersPanelListeners[ this.instanceId ];
+            delete project._layersPanelListeners[ this.instanceId ];
         }
     }
 }

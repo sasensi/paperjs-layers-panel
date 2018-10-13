@@ -47,11 +47,8 @@
         onMouseDown: function () {this.selected = !this.selected;}
     });
 
-    // Here we load it without using helper function because angular files
-    // will be inserted at the end of body tag and helper function has not
-    // been set at this point.
-    // document.body.appendChild(document.createElement('paperjs-layer-panel'));
-    paper.createLayersPanel();
+    // load panel for currently active project
+    paperjsLayersPanel.create();
 
 </script>
 </html>
