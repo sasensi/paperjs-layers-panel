@@ -9,15 +9,14 @@ https://sasensi.github.io/paperjs-layers-panel/
 
 
 ## Usage
-First, you need to make sure that `Paper.js` is loaded and that a global variable `paper` is available.  
-Then load this plugin (file located at `./build/paperjs-layers-panel.js`) by adding a `<script>` tag to your page.
+Include the file located at `./build/paperjs-layers-panel.js` by adding a `<script>` tag to your page.
 ```html
 <script src="./paperjs-layers-panel.js"></script>
 ```
 
 Then in your app, after `Paper.js` is [bounded](http://paperjs.org/reference/paperscope/#setup-element) to a canvas, you can simply call the helper function to create a panel for the current project.
 ```javascript
-paper.createLayersPanel();
+paperjsLayersPanel.create();
 ```
 
 ## Technologies
@@ -40,37 +39,38 @@ So in its actual state, this plugin is more suited for debugging of `Paper.js` p
 
 
 ## API
-### Helper method
-This plugin add a single `createLayersPanel()` method to global `PaperScope` object.  
+### Instantiation method
+This plugin register a global object `paperjsLayersPanel` containing a single method `create()`.  
 It can be called without argument automatically binding panel to current project and appending element to the document body.
 ```javascript
-paper.createLayersPanel();
+paperjsLayersPanel.create();
 ```
-Or it can be called with a callback as argument. Callback is called once the element is created and initialized. Instance is passed as single callback argument.
-```javascript
-paper.createLayersPanel(function (instance) {
-    // called when the element is fully loaded
-});
-```
-Finally, it can be called passing an `object` as argument with following optional properties:
+It can also be called passing an `object` as argument with following optional properties:
 ```
 {
-    scope   : PaperScope,
-    parent  : HTMLElement,
-    callback: (PanelComponent) => {}
+    project?: paper.Project
+    parent?: HTMLElement
+    callback?: ( panel: PanelComponent ) => {}
 }
 ```
 Default options:
 ```javascript
-paper.createLayersPanel({
-    scope   : paper,
+paperjsLayersPanel.create({
+    project : paper.project,
     parent  : document.body,
     callback: null,
 });
 ```
 
 ### Instance methods
-After retrieving instance from the callback, methods can be used to control the panel:
+First, you need to retrieve `PanelComponent` instance from the callback:
+```javascript
+paperjsLayersPanel.create({callback: function (panel) {
+    // Here you can call instance methods.
+    panel.update();    
+}});
+```
+Then, these methods can be used to control the panel:
 - `update()` Manually triggers project change detection and update display. 
 - `close()` Completely remove the panel from the DOM.
 - `resetSize()` Reset panel to its original size (cancel effects of resizing through UI).
@@ -101,6 +101,8 @@ After retrieving instance from the callback, methods can be used to control the 
 - [x] simplify API
 - [x] online demo
 - [x] complete readme
+- [ ] add tests
 - [ ] add to npm repository
+- [ ] add to CDN
 - [ ] add to [sketch](http://sketch.paperjs.org)
 - [ ] contribute note
