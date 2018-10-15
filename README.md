@@ -101,7 +101,7 @@ Then, these methods can be used to control the panel:
 - [x] simplify API
 - [x] online demo
 - [x] complete readme
-- [ ] add tests
+- [x] add tests
 - [ ] add to npm repository
 - [ ] add to CDN
 - [ ] add to [sketch](http://sketch.paperjs.org)

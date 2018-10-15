@@ -8,11 +8,11 @@
     [handle]="titleBar"
 >
     <header #titleBar (dblclick)="resetSize()">
-        <button (click)="update()">
+        <button class="update-button" (click)="update()">
             <fa-icon [icon]="iconUpdate"></fa-icon>
         </button>
         <h1>Layers panel</h1>
-        <button (click)="close()">
+        <button class="close-button" (click)="close()">
             <fa-icon [icon]="iconClose"></fa-icon>
         </button>
     </header>

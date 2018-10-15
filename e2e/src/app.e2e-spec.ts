@@ -3,7 +3,7 @@ import { browser } from '../../node_modules/protractor';
 
 browser.waitForAngularEnabled(false);
 
-describe('workspace-project App', () =>
+describe('Panel', () =>
 {
     let page: AppPage;
 
