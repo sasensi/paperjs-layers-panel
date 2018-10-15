@@ -28,7 +28,7 @@
         </button>
     </div>
     <!-- children -->
-    <div *ngIf="hasChildren && childrenVisible">
+    <div class="children" *ngIf="hasChildren && childrenVisible">
         <paperjs-layer-panel-item *ngFor="let child of _item.children" [item]="child" [depth]="depth+1"></paperjs-layer-panel-item>
     </div>
 </ng-container>

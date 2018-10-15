@@ -35,6 +35,12 @@ header {
 // GLOBAL
 //
 :host /deep/ {
+    // reverse children order to make top items appear first
+    .children {
+        display        : flex;
+        flex-direction : column-reverse;
+    }
+
     // reset
     h1, h2 {
         margin    : 0;
