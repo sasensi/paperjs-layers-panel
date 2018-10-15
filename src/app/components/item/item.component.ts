@@ -28,12 +28,6 @@ export class ItemComponent
 {
     @Input() set item(item)
     {
-        // only check instance type if global paper variable is available
-        if (!(item instanceof paper.Item))
-        {
-            console.warn('Item should be a "paper.Item" instance.');
-            return;
-        }
         this._item = item;
     }
     _item: paper.Item;
