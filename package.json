@@ -2,14 +2,12 @@
   "name": "paperjs-layers-panel",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
+    "serve": "ng serve",
     "build": "ng build --output-hashing=none --prod && gulp package && gulp clean",
-    "lint": "ng lint",
-    "test:ci":"ng test --watch false && ng e2e",
+    "test:ci": "ng test --watch false && ng e2e",
     "test:unit": "ng test",
     "test:e2e": "ng e2e --port 4201",
-    "test:e2e:debug": "node --inspect-brk node_modules/protractor/bin/protractor e2e/protractor.conf.js"
+    "examples": "http-server -o"
   },
   "private": true,
   "dependencies": {
@@ -44,6 +42,7 @@
     "gulp": "^3.9.1",
     "gulp-clean": "^0.4.0",
     "gulp-concat": "^2.6.1",
+    "http-server": "^0.11.1",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~3.0.0",

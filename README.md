@@ -128,6 +128,42 @@ Panel is provided with a minimal default style. It can easily be customized with
 See `./examples/style-customization.html` for an example of how it can be done.
 
 
+
+## Development
+Note that `node` and `npm` are needed to run following commands.
+### Install dependencies
+```
+npm install
+```
+### Launch development live server
+```
+npm run serve
+```
+### Build
+Bundle will be placed at `./build/paperjs-layers-panel.js`.
+```
+npm run build
+```
+### Run examples
+Make sure project is built before running examples.
+```
+npm run examples
+```
+A simple static server should be opened at `http://127.0.0.1:8080`.
+There is actually no navigation in place between examples but the following are availables:
+- Basic ([local](http://127.0.0.1:8080)) ([online](https://sasensi.github.io/paperjs-layers-panel))
+- Panel customization ([local](http://127.0.0.1:8080/examples/panel-customization.html)) ([online](https://sasensi.github.io/paperjs-layers-panel/examples/panel-customization.html))
+- Style customization ([local](http://127.0.0.1:8080/examples/style-customization.html)) ([online](https://sasensi.github.io/paperjs-layers-panel/examples/style-customization.html))
+### Run tests
+#### Unit
+```
+npm run test:unit
+```
+#### End to end
+```
+npm run test:e2e
+```
+
 ## Roadmap
 ### Use cases 
 - [x] bind scope
