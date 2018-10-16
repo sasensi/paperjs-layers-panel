@@ -9,9 +9,9 @@ https://sasensi.github.io/paperjs-layers-panel/
 
 
 ## Usage
-Include the file located at `./build/paperjs-layers-panel.js` by adding a `<script>` tag to your page.
+Include plugin with a `<script>` tag in your HTML page.
 ```html
-<script src="./paperjs-layers-panel.js"></script>
+<script src="https://sasensi.github.io/paperjs-layers-panel/build/paperjs-layers-panel.js"></script>
 ```
 
 Then in your app, after `Paper.js` is [bounded](http://paperjs.org/reference/paperscope/#setup-element) to a canvas, you can simply call the helper function to create a panel for the current project.
@@ -192,7 +192,6 @@ npm run test:e2e
 - [x] complete readme
 - [x] add tests
 - [x] allow full customization
-- [ ] add to npm repository
-- [ ] add to CDN
 - [ ] add to [sketch](http://sketch.paperjs.org)
+- [ ] add to npm repository
 - [ ] contribute note
