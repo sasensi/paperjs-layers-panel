@@ -1,5 +1,7 @@
 import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { faSyncAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { DEFAULT_PANEL_OPTIONS } from '../../constants/default-panel-options.constant';
+import { PanelOptions } from '../../types/panel-options.type';
 
 /**
  * Main component that display a layers panel according to bound PaperScope.
@@ -17,12 +19,18 @@ import { faSyncAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
 })
 export class PanelComponent
 {
+    @Input() options: PanelOptions = Object.assign({}, DEFAULT_PANEL_OPTIONS);
+
     @Input() set project ( project )
     {
         this._project = project;
-
         this.addChangeListener();
         this.update();
+    }
+
+    get project ()
+    {
+        return this._project;
     }
 
     _project: paper.Project;
@@ -91,6 +99,11 @@ export class PanelComponent
         // remove inline styles added by resizable directive
         el.style.removeProperty('width');
         el.style.removeProperty('height');
+    }
+
+    get element(): HTMLElement
+    {
+        return this.elementRef.nativeElement;
     }
 
 

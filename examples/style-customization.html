@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Paperjs Layers Panel Demo</title>
+    <title>Paperjs Layers Panel Demo - Panel Customization</title>
     <!-- load paper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.11.5/paper-core.js"></script>
     <!-- load panel -->
-    <script src="./build/paperjs-layers-panel.js"></script>
+    <script src="../build/paperjs-layers-panel.js"></script>
     <style>
         /* stylize canvas */
         html,
@@ -26,15 +26,31 @@
 
         /* stylize panel */
         paperjs-layer-panel main {
-            position : fixed;
-            top      : 15px;
-            z-index  : 1;
-            left     : 15px;
+            position      : fixed;
+            top           : 15px;
+            z-index       : 1;
+            left          : 15px;
+            background    : #FFEC87;
+            font-family   : serif !important;
+            border-radius : 10px;
+        }
+
+        paperjs-layer-panel header {
+            background : #B3C3FF;
+        }
+
+        paperjs-layer-panel .delete-button {
+            background : white;
+        }
+
+        paperjs-layer-panel button:hover {
+            background : #F3D744 !important;
         }
     </style>
 </head>
 <body>
 <canvas id="canvas" resize></canvas>
+<!-- paper -->
 <script>
     // load paper
     paper.setup(document.getElementById('canvas'));
@@ -74,8 +90,7 @@
 </script>
 <!-- panel -->
 <script>
-    // create panel
-    paperjsLayersPanel.create();
+    paperjsLayersPanel.create({resizable: false});
 </script>
 </body>
 </html>

@@ -2,11 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>PaperjsLayersPanel</title>
+    <title>Paperjs Layers Panel Demo - Panel Customization</title>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+    <!-- load paper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.11.5/paper-core.js"></script>
+    <!-- load panel -->
+    <script src="../build/paperjs-layers-panel.js"></script>
     <style>
+        /* stylize canvas */
         html,
         body {
             margin   : 0;
@@ -22,6 +26,7 @@
             left     : 0;
         }
 
+        /* stylize panel */
         paperjs-layer-panel main {
             position : fixed;
             top      : 15px;
@@ -103,9 +108,6 @@
         <input type="checkbox" id="items.expanded">
     </div>
 </fieldset>
-<!-- angular files will be inserted here -->
-</body>
-<!-- place script outside of body to make sure it is loaded after angular -->
 <!-- paper -->
 <script>
     // load paper
@@ -163,4 +165,5 @@
         }
     });
 </script>
+</body>
 </html>

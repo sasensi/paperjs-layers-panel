@@ -41,16 +41,44 @@ So in its actual state, this plugin is more suited for debugging of `Paper.js` p
 ## API
 ### Instantiation method
 This plugin register a global object `paperjsLayersPanel` containing a single method `create()`.  
-It can be called without argument automatically binding panel to current project and appending element to the document body.
+It can be called without argument, automatically binding panel to current project and appending element to the document body.
 ```javascript
 paperjsLayersPanel.create();
 ```
 It can also be called passing an `object` as argument with following optional properties:
-```
+```typescript
 {
+    // the project to display
     project?: paper.Project
+    // the element that will have the panel as a child
     parent?: HTMLElement
+    // allow retrieving panel instance once it is ready
     callback?: ( panel: PanelComponent ) => {}
+    // a text displayed in title bar
+    title?: string
+    // whether update button is displayed
+    updatable?: boolean
+    // whether close button is displayed
+    closable?: boolean
+    // whether panel is draggable by clicking on title bar
+    draggable?: boolean
+    // whether panel is resizable by clicking on bottom right corner
+    resizable?: boolean
+    // options related to items
+    items?: {
+        // whether visibility button is displayed
+        hidable?: boolean
+        // whether locked button is displayed
+        lockable?: boolean
+        // whether selected button is displayed
+        selectable?: boolean
+        // whether delete button is displayed
+        deletable?: boolean
+        // whether expand/collapse button is displayed
+        expandable?: boolean
+        // whether children should be expanded by default
+        expanded?: boolean
+    }
 }
 ```
 Default options:
@@ -59,10 +87,23 @@ paperjsLayersPanel.create({
     project : paper.project,
     parent  : document.body,
     callback: null,
+    title    : 'Layers panel',
+    updatable: true,
+    closable : true,
+    draggable: true,
+    resizable: true,
+    items    : {
+        hidable   : true,
+        lockable  : true,
+        selectable: true,
+        deletable : true,
+        expandable: true,
+        expanded  : false,
+    },
 });
 ```
 
-### Instance methods
+### Instance
 First, you need to retrieve `PanelComponent` instance from the callback:
 ```javascript
 paperjsLayersPanel.create({callback: function (panel) {
@@ -70,10 +111,22 @@ paperjsLayersPanel.create({callback: function (panel) {
     panel.update();    
 }});
 ```
-Then, these methods can be used to control the panel:
+#### Methods
 - `update()` Manually triggers project change detection and update display. 
 - `close()` Completely remove the panel from the DOM.
 - `resetSize()` Reset panel to its original size (cancel effects of resizing through UI).
+
+#### Properties
+Properties that are not `readonly` can be dynamically changed but `update()` method needs to be called to apply the changes.
+- `options` The options object that was used in instanciation (without `project`, `parent` and `callback` properties).
+- `project` The `paper.Project` instance that is displayed in the panel.
+- `element` (readonly) The root `<paperjs-layer-panel>` element.
+
+
+### Style
+Panel is provided with a minimal default style. It can easily be customized with CSS by targetting `<paperjs-layer-panel>` element.
+See `./examples/style-customization.html` for an example of how it can be done.
+
 
 ## Roadmap
 ### Use cases 
@@ -102,6 +155,7 @@ Then, these methods can be used to control the panel:
 - [x] online demo
 - [x] complete readme
 - [x] add tests
+- [x] allow full customization
 - [ ] add to npm repository
 - [ ] add to CDN
 - [ ] add to [sketch](http://sketch.paperjs.org)

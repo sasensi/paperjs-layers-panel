@@ -1,23 +1,23 @@
 <main
     #wrapper
-    ngResizable
+    [ngResizable]="options.resizable"
     [rzMinHeight]="26"
     [rzMinWidth]="26"
     [rzHandles]="'se'"
-    ngDraggable
+    [ngDraggable]="options.draggable"
     [handle]="titleBar"
 >
     <header #titleBar (dblclick)="resetSize()">
-        <button class="update-button" (click)="update()">
+        <button *ngIf="options.updatable" class="update-button" (click)="update()">
             <fa-icon [icon]="iconUpdate"></fa-icon>
         </button>
-        <h1>Layers panel</h1>
-        <button class="close-button" (click)="close()">
+        <h1>{{options.title}}</h1>
+        <button *ngIf="options.closable" class="close-button" (click)="close()">
             <fa-icon [icon]="iconClose"></fa-icon>
         </button>
     </header>
     <section class="children" *ngIf="_project">
         <!-- loop layers -->
-        <paperjs-layer-panel-item *ngFor="let layer of _project.layers" [item]="layer"></paperjs-layer-panel-item>
+        <paperjs-layer-panel-item *ngFor="let layer of _project.layers" [item]="layer" [options]="options.items"></paperjs-layer-panel-item>
     </section>
 </main>
