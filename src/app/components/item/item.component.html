@@ -21,7 +21,7 @@
             </button>
         </div>
         <!-- name -->
-        <h2>{{_item.name || _item.className}}</h2>
+        <h2 [class.named]="!!_item.name">{{_item.name || _item.className}}</h2>
         <!-- delete -->
         <button *ngIf="options.deletable" class="delete-button" (click)="_item.remove()">
             <fa-icon [icon]="iconDelete"></fa-icon>
