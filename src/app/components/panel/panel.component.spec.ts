@@ -7,7 +7,7 @@ import * as paper from 'paper';
 import { ItemComponent } from '../item/item.component';
 import { PanelComponent } from './panel.component';
 
-describe('AppComponent', () =>
+describe('PanelComponent', () =>
 {
     let project: paper.Project;
     let fixture: ComponentFixture<PanelComponent>;
@@ -65,14 +65,24 @@ describe('AppComponent', () =>
         expect(debugElement.query(By.css('h1')).nativeElement.textContent).toEqual('Layers panel');
     });
 
+    it('should render custom title', () =>
+    {
+        const title            = 'test';
+        instance.options.title = title;
+        instance.update();
+        expect(debugElement.query(By.css('h1')).nativeElement.textContent).toEqual(title);
+    });
+
     it('should render update button', () =>
     {
         expect(debugElement.query(By.css('.update-button'))).toBeTruthy();
     });
 
-    it('should render close button', () =>
+    it('should not render update button if it is disabled', () =>
     {
-        expect(debugElement.query(By.css('.close-button'))).toBeTruthy();
+        instance.options.updatable = false;
+        instance.update();
+        expect(debugElement.query(By.css('.update-button'))).toBeNull();
     });
 
     it('should update when update button is clicked', () =>
@@ -86,6 +96,18 @@ describe('AppComponent', () =>
         expect(getVisibleItemsCount()).toEqual(1);
     });
 
+    it('should render close button', () =>
+    {
+        expect(debugElement.query(By.css('.close-button'))).toBeTruthy();
+    });
+
+    it('should not render close button if it is disabled', () =>
+    {
+        instance.options.closable = false;
+        instance.update();
+        expect(debugElement.query(By.css('.close-button'))).toBeNull();
+    });
+
     it('should be removed when close button is clicked', () =>
     {
         expect(element.parentElement).toBeTruthy();
@@ -93,6 +115,30 @@ describe('AppComponent', () =>
         debugElement.query(By.css('.close-button')).triggerEventHandler('click', null);
 
         expect(element.parentElement).not.toBeTruthy();
+    });
+
+    it('should be draggable', () =>
+    {
+        expect(debugElement.query(By.css('.ng-draggable'))).toBeTruthy();
+    });
+
+    it('should not be draggable if it is disabled', () =>
+    {
+        instance.options.draggable = false;
+        instance.update();
+        expect(debugElement.query(By.css('.ng-draggable'))).toBeNull();
+    });
+
+    it('should be resizable', () =>
+    {
+        expect(debugElement.query(By.css('.ng-resizable'))).toBeTruthy();
+    });
+
+    it('should not be resizable if it is disabled', () =>
+    {
+        instance.options.resizable = false;
+        instance.update();
+        expect(debugElement.query(By.css('.ng-resizable'))).toBeNull();
     });
 
 

@@ -9,6 +9,8 @@ import {
     faUnlockAlt,
     faVectorSquare,
 } from '@fortawesome/free-solid-svg-icons';
+import { DEFAULT_PANEL_OPTIONS } from '../../constants/default-panel-options.constant';
+import { ItemsOptions } from '../../types/items-options.type';
 
 /**
  * Displays an item and its potential children.
@@ -26,27 +28,30 @@ import {
 })
 export class ItemComponent
 {
-    @Input() set item(item)
+    @Input() set item ( item )
     {
         this._item = item;
     }
+
     _item: paper.Item;
+
+    @Input() options: ItemsOptions = Object.assign({}, DEFAULT_PANEL_OPTIONS.items);
 
     // used to controll horizontal offset according to item depth in hierarchy
     @Input() depth = 0;
 
-    childrenVisible = false;
+    expanded;
 
-    iconVisible            = faEye;
-    iconNotVisible         = faEyeSlash;
-    iconLocked             = faLock;
-    iconNotLocked          = faUnlockAlt;
-    iconChildrenVisible    = faCaretDown;
-    iconChildrenNotVisible = faCaretRight;
-    iconSelected           = faVectorSquare;
-    iconDelete             = faTrash;
+    iconVisible     = faEye;
+    iconNotVisible  = faEyeSlash;
+    iconLocked      = faLock;
+    iconNotLocked   = faUnlockAlt;
+    iconExpanded    = faCaretDown;
+    iconNotExpanded = faCaretRight;
+    iconSelected    = faVectorSquare;
+    iconDelete      = faTrash;
 
-    constructor (private changeDetectorRef: ChangeDetectorRef)
+    constructor ( private changeDetectorRef: ChangeDetectorRef )
     {
     }
 
@@ -55,7 +60,19 @@ export class ItemComponent
         return this._item.children && this._item.children.length > 0;
     }
 
-    update()
+    get childrenVisible (): boolean
+    {
+        if (!this.options.expandable)
+        {
+            return this.options.expanded;
+        }
+        else
+        {
+            return this.expanded !== false && (this.expanded === true || this.options.expanded);
+        }
+    }
+
+    update ()
     {
         this.changeDetectorRef.detectChanges();
     }

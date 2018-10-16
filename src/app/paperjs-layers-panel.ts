@@ -1,6 +1,8 @@
 import { PanelComponent } from './components/panel/panel.component';
+import { DEFAULT_PANEL_OPTIONS } from './constants/default-panel-options.constant';
+import { PanelOptions } from './types/panel-options.type';
 
-interface Options
+interface Options extends PanelOptions
 {
     project?: paper.Project
     parent?: HTMLElement
@@ -18,7 +20,7 @@ export const paperjsLayersPanel = {
         };
 
         // merge options with default
-        options = Object.assign({}, defaultOptions, options);
+        options = Object.assign({}, DEFAULT_PANEL_OPTIONS, defaultOptions, options);
 
         // check project
         if (!options.project)
@@ -39,6 +41,12 @@ export const paperjsLayersPanel = {
             // retrieve instance
             const instance: PanelComponent = event.detail;
 
+            // bind options
+            var panelOptions: PanelOptions = Object.assign({}, options);
+            delete panelOptions[ 'parent' ];
+            delete panelOptions[ 'callback' ];
+            delete panelOptions[ 'project' ];
+            instance.options = panelOptions;
             // bind project
             instance.project = options.project;
 

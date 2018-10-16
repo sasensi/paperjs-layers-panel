@@ -62,10 +62,26 @@ describe('ItemComponent', () =>
         expect(debugElement.query(By.css('.visibility-button'))).toBeTruthy();
     });
 
+    it('should not render visibility button if it is disabled', () =>
+    {
+        bindItem();
+        instance.options.hidable = false;
+        instance.update();
+        expect(debugElement.query(By.css('.visibility-button'))).toBeNull();
+    });
+
     it('should render locked button', () =>
     {
         bindItem();
         expect(debugElement.query(By.css('.locked-button'))).toBeTruthy();
+    });
+
+    it('should not render locked button if it is disabled', () =>
+    {
+        bindItem();
+        instance.options.lockable = false;
+        instance.update();
+        expect(debugElement.query(By.css('.locked-button'))).toBeNull();
     });
 
     it('should render selected button', () =>
@@ -74,37 +90,82 @@ describe('ItemComponent', () =>
         expect(debugElement.query(By.css('.selected-button'))).toBeTruthy();
     });
 
+    it('should not render selected button if it is disabled', () =>
+    {
+        bindItem();
+        instance.options.selectable = false;
+        instance.update();
+        expect(debugElement.query(By.css('.selected-button'))).toBeNull();
+    });
+
     it('should render delete button', () =>
     {
         bindItem();
         expect(debugElement.query(By.css('.delete-button'))).toBeTruthy();
     });
 
+    it('should not render delete button if it is disabled', () =>
+    {
+        bindItem();
+        instance.options.deletable = false;
+        instance.update();
+        expect(debugElement.query(By.css('.delete-button'))).toBeNull();
+    });
+
+    it('should not render children button if do not have children', () =>
+    {
+        bindItem();
+        expect(debugElement.query(By.css('.children-button'))).toBeNull();
+    });
+
+    it('should render children button if item has children', () =>
+    {
+        bindItem(new paper.Group(new paper.Path()));
+        expect(debugElement.query(By.css('.children-button'))).toBeTruthy();
+    });
+
+    it('should not render children button if item has children but it is disabled', () =>
+    {
+        bindItem(new paper.Group(new paper.Path()));
+        instance.options.expandable = false;
+        instance.update();
+        expect(debugElement.query(By.css('.children-button'))).toBeNull();
+    });
+
     it('should not render children by default', () =>
     {
-        var group = new paper.Group(new paper.Path());
-        bindItem(group);
+        bindItem(new paper.Group(new paper.Path()));
         expect(getVisibleItemsCount()).toEqual(0);
     });
 
-    it('should render children when children button is clicked', () =>
+    it('should render children by default if it is enabled', () =>
     {
-        var group = new paper.Group(new paper.Path());
-        bindItem(group);
-        expect(getVisibleItemsCount()).toEqual(0);
-        debugElement.query(By.css('.children-button')).triggerEventHandler('click', null);
+        bindItem(new paper.Group(new paper.Path()));
+        instance.options.expanded = true;
+        instance.update();
         expect(getVisibleItemsCount()).toEqual(1);
     });
 
-    it('should remove children when children button is clicked again', () =>
+    it('should toggle children when children button is clicked', () =>
     {
-        var group = new paper.Group(new paper.Path());
-        bindItem(group);
+        bindItem(new paper.Group(new paper.Path()));
         expect(getVisibleItemsCount()).toEqual(0);
         debugElement.query(By.css('.children-button')).triggerEventHandler('click', null);
         expect(getVisibleItemsCount()).toEqual(1);
         debugElement.query(By.css('.children-button')).triggerEventHandler('click', null);
         expect(getVisibleItemsCount()).toEqual(0);
+    });
+
+    it('should toggle children when children button is clicked with default expanded', () =>
+    {
+        bindItem(new paper.Group(new paper.Path()));
+        instance.options.expanded = true;
+        instance.update();
+        expect(getVisibleItemsCount()).toEqual(1);
+        debugElement.query(By.css('.children-button')).triggerEventHandler('click', null);
+        expect(getVisibleItemsCount()).toEqual(0);
+        debugElement.query(By.css('.children-button')).triggerEventHandler('click', null);
+        expect(getVisibleItemsCount()).toEqual(1);
     });
 
     it('should toggle visibility when visibility button is clicked', () =>

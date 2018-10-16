@@ -1,28 +1,43 @@
 // panel top level wrapper
 main {
     // hide overflow because user can resize panel or collapse groups to see hidden content
-    overflow    : hidden;
-    border      : 1px solid;
+    overflow         : hidden;
+    border           : 1px solid;
     // disable selection to avoid unwanted effects when clicking on buttons
-    user-select : none;
-    font-family : sans-serif;
-    font-size   : 14px;
+    user-select      : none;
+    font-family      : sans-serif;
+    font-size        : 14px;
     // use inline block display to make the panel adapt its width to content by default
-    display     : inline-block;
+    display          : inline-block;
+    background-color : #FFF;
 }
 
 // title bar
 header {
-    cursor          : move;
     display         : flex;
     align-items     : center;
     justify-content : space-between;
     border-bottom   : 2px solid;
+    min-height      : 25px;
+
+    &.ng-draggable {
+        cursor : move;
+    }
 
     // make the text disappear when panel is downsized
     h1 {
         white-space : nowrap;
         overflow    : hidden;
+        flex        : 2;
+        text-align  : center;
+
+        &:first-child {
+            margin-left : 5px;
+        }
+
+        &:last-child {
+            margin-right : 5px;
+        }
     }
 
     // make sure that buttons keep their size when panel is downsized
@@ -35,6 +50,12 @@ header {
 // GLOBAL
 //
 :host /deep/ {
+    // reverse children order to make top items appear first
+    .children {
+        display        : flex;
+        flex-direction : column-reverse;
+    }
+
     // reset
     h1, h2 {
         margin    : 0;

@@ -1,34 +1,34 @@
 <ng-container *ngIf="_item">
     <div class="item">
         <!-- visible -->
-        <button class="visibility-button" (click)="_item.visible = !_item.visible">
+        <button *ngIf="options.hidable" class="visibility-button" (click)="_item.visible = !_item.visible">
             <fa-icon [icon]="_item.visible ? iconVisible : iconNotVisible" [class.faded]="!_item.visible"></fa-icon>
         </button>
         <!-- locked -->
-        <button class="locked-button" (click)="_item.locked = !_item.locked">
+        <button *ngIf="options.lockable" class="locked-button" (click)="_item.locked = !_item.locked">
             <fa-icon [icon]="_item.locked ? iconLocked : iconNotLocked" [class.faded]="!_item.locked"></fa-icon>
         </button>
         <!-- selected -->
-        <button class="selected-button" (click)="_item.selected = !_item.selected">
+        <button *ngIf="options.selectable" class="selected-button" (click)="_item.selected = !_item.selected">
             <fa-icon [icon]="iconSelected" [class.faded]="!_item.selected"></fa-icon>
         </button>
         <!-- create indentation effect by adding a right margin proportional to item depth in hierarchy -->
         <span [style.marginRight]="depth*15+'px'"></span>
         <!-- use a wrapper around children toggle button to make sure that siblings items will be aligned wether they have children or not -->
-        <div class="children-toggle">
-            <button class="children-button" *ngIf="hasChildren" (click)="childrenVisible = !childrenVisible; update()">
-                <fa-icon [icon]="childrenVisible ? iconChildrenVisible : iconChildrenNotVisible"></fa-icon>
+        <div *ngIf="options.expandable" class="children-toggle">
+            <button *ngIf="hasChildren" class="children-button" (click)="expanded = !childrenVisible; update()">
+                <fa-icon [icon]="childrenVisible ? iconExpanded : iconNotExpanded"></fa-icon>
             </button>
         </div>
         <!-- name -->
         <h2>{{_item.name || _item.className}}</h2>
         <!-- delete -->
-        <button class="delete-button" (click)="_item.remove()">
+        <button *ngIf="options.deletable" class="delete-button" (click)="_item.remove()">
             <fa-icon [icon]="iconDelete"></fa-icon>
         </button>
     </div>
     <!-- children -->
-    <div *ngIf="hasChildren && childrenVisible">
-        <paperjs-layer-panel-item *ngFor="let child of _item.children" [item]="child" [depth]="depth+1"></paperjs-layer-panel-item>
+    <div class="children" *ngIf="hasChildren && childrenVisible">
+        <paperjs-layer-panel-item *ngFor="let child of _item.children" [item]="child" [options]="options" [depth]="depth+1"></paperjs-layer-panel-item>
     </div>
 </ng-container>
