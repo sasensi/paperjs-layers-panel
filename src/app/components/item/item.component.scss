@@ -15,6 +15,10 @@ h2 {
     flex          : 1;
     white-space   : nowrap;
     overflow      : hidden;
+
+    &:not(.named) {
+        font-style : italic;
+    }
 }
 
 span:first-child + h2 {
