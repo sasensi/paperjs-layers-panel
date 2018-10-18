@@ -141,6 +141,14 @@ describe('PanelComponent', () =>
         expect(debugElement.query(By.css('.ng-resizable'))).toBeNull();
     });
 
+    it('should call onClose callback when close button is clicked', () =>
+    {
+        const callback = jasmine.createSpy().and.callFake(() =>{});
+        instance.options.onClose = callback;
+        debugElement.query(By.css('.close-button')).triggerEventHandler('click', null);
+        expect(callback).toHaveBeenCalled();
+    });
+
 
     //
     // helpers

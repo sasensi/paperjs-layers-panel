@@ -8,4 +8,5 @@ export interface PanelOptions
     draggable?: boolean
     resizable?: boolean
     items?: ItemsOptions
+    onClose?: () => {}
 }

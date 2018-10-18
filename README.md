@@ -64,6 +64,8 @@ It can also be called passing an `object` as argument with following optional pr
     draggable?: boolean
     // whether panel is resizable by clicking on bottom right corner
     resizable?: boolean
+    // a callback called when panel is closed through close button
+    onClose?: () => {}
     // options related to items
     items?: {
         // whether visibility button is displayed
@@ -92,6 +94,7 @@ paperjsLayersPanel.create({
     closable : true,
     draggable: true,
     resizable: true,
+    onClose  : null,
     items    : {
         hidable   : true,
         lockable  : true,
