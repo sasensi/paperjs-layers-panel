@@ -19,8 +19,12 @@ export const paperjsLayersPanel = {
             callback: null,
         };
 
+        // merge item options separately to controll deep merging
+        const itemsOptions = Object.assign({}, DEFAULT_PANEL_OPTIONS.items, options && options.items);
+
         // merge options with default
-        options = Object.assign({}, DEFAULT_PANEL_OPTIONS, defaultOptions, options);
+        options       = Object.assign({}, DEFAULT_PANEL_OPTIONS, defaultOptions, options);
+        options.items = itemsOptions;
 
         // check project
         if (!options.project)
@@ -33,7 +37,7 @@ export const paperjsLayersPanel = {
         }
 
         // create element
-        var element = options.parent.appendChild(document.createElement('paperjs-layer-panel'));
+        const element = options.parent.appendChild(document.createElement('paperjs-layer-panel'));
 
         // call it when element is ready
         element.addEventListener('ready', ( event: any ) =>
@@ -42,7 +46,7 @@ export const paperjsLayersPanel = {
             const instance: PanelComponent = event.detail;
 
             // bind options
-            var panelOptions: PanelOptions = Object.assign({}, options);
+            let panelOptions: PanelOptions = Object.assign({}, options);
             delete panelOptions[ 'parent' ];
             delete panelOptions[ 'callback' ];
             delete panelOptions[ 'project' ];
