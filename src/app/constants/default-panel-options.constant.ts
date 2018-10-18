@@ -6,6 +6,7 @@ export const DEFAULT_PANEL_OPTIONS: PanelOptions = {
     closable : true,
     draggable: true,
     resizable: true,
+    onClose  : null,
     items    : {
         hidable   : true,
         lockable  : true,

@@ -81,6 +81,11 @@ export class PanelComponent
         this.elementRef.nativeElement
             .parentElement
             .removeChild(this.elementRef.nativeElement);
+
+        if (this.options.onClose)
+        {
+            this.options.onClose();
+        }
     }
 
     /**
