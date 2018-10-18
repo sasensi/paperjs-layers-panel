@@ -19,6 +19,7 @@ before_script:
 - rm google-chrome*.deb
 
 script:
+- set -e
 - npm run test:ci
 - npm run build
 - export LAST_COMMIT_ID=$(git log --format="%H" -n 1)
